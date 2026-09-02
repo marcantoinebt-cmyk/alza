@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState, type ReactElement, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight, BarChart3, Check, ChevronDown, ChevronUp, GripVertical, LockKeyhole, Mail, Sparkles, Target, Users, X } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
@@ -268,7 +268,7 @@ function Card({ className = "", children }: { className?: string; children: Reac
 function CardHeader({ children }: { children: ReactNode }) { return <div className="border-b border-slate-200 px-5 py-4">{children}</div>; }
 function CardTitle({ children }: { children: ReactNode }) { return <h3 className="font-bold text-slate-900">{children}</h3>; }
 function CardContent({ children }: { children: ReactNode }) { return <div className="p-5">{children}</div>; }
-function ChartContainer({ className = "", children }: { className?: string; children: ReactNode }) { return <div className={className}><ResponsiveContainer width="100%" height="100%">{children}</ResponsiveContainer></div>; }
+function ChartContainer({ className = "", children }: { className?: string; config?: Record<string, unknown>; children: ReactElement }) { return <div className={className}><ResponsiveContainer width="100%" height="100%">{children}</ResponsiveContainer></div>; }
 function ChartTooltipContent({ active, payload, label }: { active?: boolean; payload?: Array<{ name?: string; value?: number | string }>; label?: string }) { if (!active || !payload?.length) return null; return <div className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs shadow-lg"><p className="font-semibold text-slate-900">{label}</p><p className="text-slate-600">{payload[0].name}: {payload[0].value}</p></div>; }
 
 function ReportView({ maturity, onRestart }: { maturity: { potential: number; strategy: number; culture: number; competences: number; governance: number; sobriety: number; overall: number }; onRestart: () => void }) {
